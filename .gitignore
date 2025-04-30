@@ -1,0 +1,6 @@
+.idea/
+**.class
+target/
+.vscode
+logs/
+logs/ayuda_docente.log
