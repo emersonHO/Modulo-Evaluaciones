@@ -1,5 +1,6 @@
 package com.fisiunmsm.ayudadoc.evaluaciones.entity;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 import lombok.AllArgsConstructor;
@@ -11,13 +12,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class Formula {
+
+    @Id
     private int id;
+
     private String codigo;
     private String descripcion;
     private String formula;
     private int funcionid;
     private String estado;
-    private int institutoid;
+    private int institucionid;
     private int departamentoid;
     private int usapesos;
     private int restamenor;
@@ -28,6 +32,7 @@ public class Formula {
     private int copiamenor;
     private int copiamayor;
     private int redondeo;
+    private int institutoid;
 
 
 
@@ -67,11 +72,11 @@ public class Formula {
     public void setEstado(String estado){
         this.estado=estado;
     }
-    public int getInstitutoId(){
-        return institutoid;
+    public int getInstitucionId(){
+        return institucionid;
     }
-    public void setInstitutoId(int institutoid){
-        this.institutoid=institutoid;
+    public void setInstitucionId(int institucionid){
+        this.institucionid=institucionid;
     }
     public int getDepartamentoId(){
         return departamentoid;
@@ -133,5 +138,10 @@ public class Formula {
     public void setRedondeo(int redondeo){
         this.redondeo=redondeo;
     }
-
+    public int getInstitutoId(){
+        return institutoid;
+    }
+    public void setInstitutoId(int institutoid){
+        this.institutoid=institutoid;
+    }
 }

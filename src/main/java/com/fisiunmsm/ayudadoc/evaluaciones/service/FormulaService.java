@@ -28,11 +28,11 @@ public class FormulaService {
 
     public Mono<Formula> update(int id, Formula formula){
         return formulaRepository.save(new Formula(id, formula.getCodigo(), formula.getDescripcion(), 
-                formula.getFormula(), formula.getFuncionId(), formula.getEstado(), formula.getInstitutoId(),
+                formula.getFormula(), formula.getFuncionId(), formula.getEstado(), formula.getInstitucionId(),
                 formula.getDepartamentoId(), formula.getUsaPesos(), formula.getRestaMenor(), 
                 formula.getNumMenor(), formula.getRestaMayor(), formula.getNumMayor(),
                 formula.getCopiaPrimero(), formula.getCopiaMenor(), formula.getCopiaMayor(), 
-                formula.getRedondeo()));
+                formula.getRedondeo(), formula.getInstitutoId()));
     }
     
     public Mono<Void> delete(int id){
