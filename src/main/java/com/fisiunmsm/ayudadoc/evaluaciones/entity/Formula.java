@@ -1,5 +1,15 @@
-package com.fisiunmsm.ayudadoc.evaluaciones.domain.model;
+package com.fisiunmsm.ayudadoc.evaluaciones.entity;
 
+import org.springframework.data.relational.core.mapping.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Table ("formula")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Formula {
     private int id;
     private String codigo;
@@ -19,38 +29,7 @@ public class Formula {
     private int copiamayor;
     private int redondeo;
 
-    public Formula(){
 
-    }
-    
-    public Formula(int id, String codigo, String descripcion, String formula){
-        this.id= id;
-        this.codigo= codigo;
-        this.descripcion= descripcion;
-        this.formula= formula;
-    }
-    
-    public Formula(int id, String codigo, String descripcion, String formula, int funcionid, String estado,
-                int institutoid, int departamentoid, int usapesos, int restamenor, int nummenor, int restamayor,
-                int nummayor, int copiaprimero, int copiamenor, int copiamayor, int redondeo){
-        this.id= id;
-        this.codigo= codigo;
-        this.descripcion= descripcion;
-        this.formula= formula;
-        this.funcionid= funcionid;
-        this.estado= estado;
-        this.institutoid= institutoid;
-        this.departamentoid= departamentoid;
-        this.usapesos= usapesos;
-        this.restamenor= restamenor;
-        this.nummenor= nummenor;
-        this.restamayor= restamayor;
-        this.nummayor= nummayor;
-        this.copiaprimero= copiaprimero;
-        this.copiamenor= copiamenor;
-        this.copiamayor= copiamayor;
-        this.redondeo= redondeo;
-    }
 
     public int getId(){
         return id;
@@ -154,5 +133,5 @@ public class Formula {
     public void setRedondeo(int redondeo){
         this.redondeo=redondeo;
     }
-}
 
+}

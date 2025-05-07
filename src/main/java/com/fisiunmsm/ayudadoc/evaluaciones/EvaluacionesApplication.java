@@ -1,14 +1,13 @@
 package com.fisiunmsm.ayudadoc.evaluaciones;
 
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Main {
+public class EvaluacionesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Main.class, args);
+		SpringApplication.run(EvaluacionesApplication.class, args);
 	}
 
 }
