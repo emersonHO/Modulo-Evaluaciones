@@ -9,7 +9,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 @Configuration
 public class RubricaRouter {
-    private static final String PATH = "api/rubrica";
+    private static final String PATH = "/api/rubrica";
 
     @Bean
     RouterFunction<ServerResponse> rubricaRoutes(RubricaHandler handler) {
@@ -17,8 +17,8 @@ public class RubricaRouter {
                 .GET(PATH, handler::getAll)
                 .GET(PATH + "/{id}", handler::getById)
                 .POST(PATH, handler::save)
-                .PUT(PATH + "{/id}", handler::update)
-                .DELETE(PATH + "{/id}", handler::delete)
+                .PUT(PATH + "/{id}", handler::update)
+                .DELETE(PATH + "/{id}", handler::delete)
                 .build();
     }
 }

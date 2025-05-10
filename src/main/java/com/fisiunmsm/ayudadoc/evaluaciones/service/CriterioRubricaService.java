@@ -11,12 +11,13 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class CriterioRubricaService {
     private final CriterioRubricaRepository criterioRubricaRepository;
+
     public Flux<CriterioRubrica> getAll() {
         return criterioRubricaRepository.findAll();
     }
 
-    public Flux<CriterioRubrica> getByRubricaId(int rubricaId) {
-        return criterioRubricaRepository.findByRubricaId(rubricaId);
+    public Flux<CriterioRubrica> getByRubricaId(int rubricaid) {
+        return criterioRubricaRepository.findByRubricaid(rubricaid);
     }
 
     public Mono<CriterioRubrica> save(CriterioRubrica criterioRubrica) {

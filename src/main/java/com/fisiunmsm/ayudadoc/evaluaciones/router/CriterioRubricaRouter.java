@@ -12,7 +12,7 @@ public class CriterioRubricaRouter {
     private static final String PATH = "/api/criterios";
 
     @Bean
-    RouterFunction<ServerResponse> criterioRubricaRouter(CriterioRubricaHandler handler) {
+    RouterFunction<ServerResponse> criterioRubricaRoutes(CriterioRubricaHandler handler) {
         return RouterFunctions.route()
                 .GET(PATH, handler::getAll)
                 .GET(PATH + "/rubrica/{rubricaId}", handler::getByRubricaId)
