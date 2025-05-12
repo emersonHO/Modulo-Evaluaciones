@@ -29,17 +29,20 @@ public class CriterioRubricaHandler {
 
     public Mono<ServerResponse> save(ServerRequest request) {
         Mono<CriterioRubrica> criterio = request.bodyToMono(CriterioRubrica.class);
-        return criterio.flatMap(c -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(criterioRubricaService.save(c), CriterioRubrica.class));
+        return criterio.flatMap(c -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                .body(criterioRubricaService.save(c), CriterioRubrica.class));
     }
 
     public Mono<ServerResponse> update(ServerRequest request) {
         int id = Integer.parseInt(request.pathVariable("id"));
         Mono<CriterioRubrica> criterio = request.bodyToMono(CriterioRubrica.class);
-        return criterio.flatMap(c -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(criterioRubricaService.update(id, c), CriterioRubrica.class));
+        return criterio.flatMap(c -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                .body(criterioRubricaService.update(id, c), CriterioRubrica.class));
     }
 
     public Mono<ServerResponse> delete(ServerRequest request) {
         int id = Integer.parseInt(request.pathVariable("id"));
-        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(criterioRubricaService.delete(id), Void.class);
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(criterioRubricaService.delete(id),
+                Void.class);
     }
 }

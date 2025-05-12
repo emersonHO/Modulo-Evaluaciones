@@ -28,13 +28,15 @@ public class RubricaHandler {
 
     public Mono<ServerResponse> save(ServerRequest request) {
         Mono<Rubrica> rubrica = request.bodyToMono(Rubrica.class);
-        return rubrica.flatMap((r -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(rubricaService.save(r), Rubrica.class)));
+        return rubrica.flatMap((r -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                .body(rubricaService.save(r), Rubrica.class)));
     }
 
     public Mono<ServerResponse> update(ServerRequest request) {
         int id = Integer.parseInt(request.pathVariable("id"));
         Mono<Rubrica> rubrica = request.bodyToMono(Rubrica.class);
-        return rubrica.flatMap(r -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(rubricaService.update(id, r), Rubrica.class));
+        return rubrica.flatMap(r -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                .body(rubricaService.update(id, r), Rubrica.class));
     }
 
     public Mono<ServerResponse> delete(ServerRequest request) {
