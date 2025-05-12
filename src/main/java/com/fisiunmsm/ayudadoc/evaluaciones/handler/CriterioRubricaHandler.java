@@ -22,8 +22,8 @@ public class CriterioRubricaHandler {
     }
 
     public Mono<ServerResponse> getByRubricaId(ServerRequest request) {
-        int rubricaId = Integer.parseInt(request.pathVariable("rubricaId"));
-        Flux<CriterioRubrica> criterios = criterioRubricaService.getByRubricaId(rubricaId);
+        int rubricaid = Integer.parseInt(request.pathVariable("rubricaid"));
+        Flux<CriterioRubrica> criterios = criterioRubricaService.getByRubricaId(rubricaid);
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(criterios, CriterioRubrica.class);
     }
 

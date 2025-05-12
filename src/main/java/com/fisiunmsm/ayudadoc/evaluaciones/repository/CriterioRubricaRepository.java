@@ -7,5 +7,5 @@ import reactor.core.publisher.Flux;
 
 @Repository
 public interface CriterioRubricaRepository extends ReactiveCrudRepository<CriterioRubrica, Integer> {
-    Flux<CriterioRubrica> findByRubricaId(Integer rubricaId);
+    Flux<CriterioRubrica> findByRubricaid(Integer rubricaid);
 }

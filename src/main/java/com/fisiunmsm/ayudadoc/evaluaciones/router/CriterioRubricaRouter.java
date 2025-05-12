@@ -12,10 +12,10 @@ public class CriterioRubricaRouter {
     private static final String PATH = "/api/criterios";
 
     @Bean
-    RouterFunction<ServerResponse> criterioRubricaRouter(CriterioRubricaHandler handler) {
+    RouterFunction<ServerResponse> router(CriterioRubricaHandler handler) {
         return RouterFunctions.route()
                 .GET(PATH, handler::getAll)
-                .GET(PATH + "/rubrica/{rubricaId}", handler::getByRubricaId)
+                .GET(PATH + "/rubrica/{rubricaid}", handler::getByRubricaId)
                 .POST(PATH, handler::save)
                 .PUT(PATH + "/{id}", handler::update)
                 .DELETE(PATH + "/{id}", handler::delete)
