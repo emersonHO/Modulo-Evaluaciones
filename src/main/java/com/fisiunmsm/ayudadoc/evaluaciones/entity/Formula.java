@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table ("formula")
+@Table("formula")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -34,114 +34,147 @@ public class Formula {
     private int redondeo;
     private int institutoid;
 
-
-
-    public int getId(){
+    public int getId() {
         return id;
     }
-    public void setId(int id){
-        this.id=id;
+
+    public void setId(int id) {
+        this.id = id;
     }
-    public String getCodigo(){
+
+    public String getCodigo() {
         return codigo;
     }
-    public void setCodigo(String codigo){
-        this.codigo=codigo;
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
-    public String getDescripcion(){
+
+    public String getDescripcion() {
         return descripcion;
     }
-    public void setDescripcion(String descripcion){
-        this.descripcion=descripcion;
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
-    public String getFormula(){
+
+    public String getFormula() {
         return formula;
     }
-    public void setFormula(String formula){
-        this.formula=formula;
+
+    public void setFormula(String formula) {
+        this.formula = formula;
     }
-    public int getFuncionId(){
+
+    public int getFuncionId() {
         return funcionid;
     }
-    public void setFuncionId(int funcionid){
-        this.funcionid=funcionid;
+
+    public void setFuncionId(int funcionid) {
+        this.funcionid = funcionid;
     }
-    public String getEstado(){
+
+    public String getEstado() {
         return estado;
     }
-    public void setEstado(String estado){
-        this.estado=estado;
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
-    public int getInstitucionId(){
+
+    public int getInstitucionId() {
         return institucionid;
     }
-    public void setInstitucionId(int institucionid){
-        this.institucionid=institucionid;
+
+    public void setInstitucionId(int institucionid) {
+        this.institucionid = institucionid;
     }
-    public int getDepartamentoId(){
+
+    public int getDepartamentoId() {
         return departamentoid;
     }
-    public void setDepartamentoId(int departamentoid){
-        this.departamentoid=departamentoid;
+
+    public void setDepartamentoId(int departamentoid) {
+        this.departamentoid = departamentoid;
     }
-    public int getUsaPesos(){
+
+    public int getUsaPesos() {
         return usapesos;
     }
-    public void setUsaPesos(int usapesos){
-        this.usapesos=usapesos;
+
+    public void setUsaPesos(int usapesos) {
+        this.usapesos = usapesos;
     }
-    public int getRestaMenor(){
+
+    public int getRestaMenor() {
         return restamenor;
     }
-    public void setRestaMenor(int restamenor){
-        this.restamenor=restamenor;
+
+    public void setRestaMenor(int restamenor) {
+        this.restamenor = restamenor;
     }
-    public int getNumMenor(){
+
+    public int getNumMenor() {
         return nummenor;
     }
-    public void setNumMenor(int nummenor){
-        this.nummenor=nummenor;
+
+    public void setNumMenor(int nummenor) {
+        this.nummenor = nummenor;
     }
-    public int getRestaMayor(){
+
+    public int getRestaMayor() {
         return restamayor;
     }
-    public void setRestaMayor(int restamayor){
-        this.restamayor=restamayor;
+
+    public void setRestaMayor(int restamayor) {
+        this.restamayor = restamayor;
     }
-    public int getNumMayor(){
+
+    public int getNumMayor() {
         return nummayor;
     }
-    public void setNumMayor(int nummayor){
-        this.nummayor=nummayor;
+
+    public void setNumMayor(int nummayor) {
+        this.nummayor = nummayor;
     }
-    public int getCopiaPrimero(){
+
+    public int getCopiaPrimero() {
         return copiaprimero;
     }
-    public void setCopiaPrimero(int copiaprimero){
-        this.copiaprimero=copiaprimero;
+
+    public void setCopiaPrimero(int copiaprimero) {
+        this.copiaprimero = copiaprimero;
     }
-    public int getCopiaMenor(){
+
+    public int getCopiaMenor() {
         return copiamenor;
     }
-    public void setCopiaMenor(int copiamenor){
-        this.copiamenor=copiamenor;
+
+    public void setCopiaMenor(int copiamenor) {
+        this.copiamenor = copiamenor;
     }
-    public int getCopiaMayor(){
+
+    public int getCopiaMayor() {
         return copiamayor;
     }
-    public void setCopiaMayor(int copiamayor){
-        this.copiamayor=copiamayor;
+
+    public void setCopiaMayor(int copiamayor) {
+        this.copiamayor = copiamayor;
     }
-    public int getRedondeo(){
+
+    public int getRedondeo() {
         return redondeo;
     }
-    public void setRedondeo(int redondeo){
-        this.redondeo=redondeo;
+
+    public void setRedondeo(int redondeo) {
+        this.redondeo = redondeo;
     }
-    public int getInstitutoId(){
+
+    public int getInstitutoId() {
         return institutoid;
     }
-    public void setInstitutoId(int institutoid){
-        this.institutoid=institutoid;
+
+    public void setInstitutoId(int institutoid) {
+        this.institutoid = institutoid;
     }
 }
