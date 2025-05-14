@@ -11,36 +11,10 @@ import org.springframework.data.relational.core.mapping.Table;
 @NoArgsConstructor
 @Data
 public class CriterioRubrica {
-
     @Id
     private int id;
 
     private String descripcion;
     private String estado;
     private int rubricaid;
-
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getDescripcion() {
-        return descripcion;
-    }
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-    public String getEstado() {
-        return estado;
-    }
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-    public int getRubricaid() {
-        return rubricaid;
-    }
-    public void setRubricaid(int rubricaid) {
-        this.rubricaid = rubricaid;
-    }
 }

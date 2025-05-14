@@ -17,7 +17,7 @@ public class CriterioRubricaService {
     }
 
     public Flux<CriterioRubrica> getByRubricaId(int rubricaid) {
-        return criterioRubricaRepository.findByRubricaId(rubricaid);
+        return criterioRubricaRepository.findByRubricaid(rubricaid);
     }
 
     public Mono<CriterioRubrica> save(CriterioRubrica criterio) {

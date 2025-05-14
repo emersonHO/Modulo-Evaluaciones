@@ -17,7 +17,7 @@ public class NivelCriterioService {
     }
 
     public Flux<NivelCriterio> getByCriterioId(int criterioid){
-        return nivelCriterioRepository.findByCriterioRubricaId(criterioid);
+        return nivelCriterioRepository.findByCriterioid(criterioid);
     }
 
     public Mono<NivelCriterio> save(NivelCriterio nivel){
