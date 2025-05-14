@@ -6,18 +6,16 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("criteriorubrica")
+@Table("rubricacursocomponente")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CriterioRubrica {
-
+public class RubricaCursoComponente {
     @Id
     private int id;
 
-    private String descripcion;
-    private String estado;
     private int rubricaid;
+    private Long cursocomponenteid;
 
     public int getId() {
         return id;
@@ -25,22 +23,16 @@ public class CriterioRubrica {
     public void setId(int id) {
         this.id = id;
     }
-    public String getDescripcion() {
-        return descripcion;
-    }
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-    public String getEstado() {
-        return estado;
-    }
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
     public int getRubricaid() {
         return rubricaid;
     }
     public void setRubricaid(int rubricaid) {
         this.rubricaid = rubricaid;
+    }
+    public Long getCursocomponenteid() {
+        return cursocomponenteid;
+    }
+    public void setCursocomponenteid(Long cursocomponenteid) {
+        this.cursocomponenteid = cursocomponenteid;
     }
 }

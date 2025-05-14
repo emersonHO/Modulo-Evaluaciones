@@ -6,18 +6,18 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("criteriorubrica")
-@AllArgsConstructor
+@Table("nivelcriterio")
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
-public class CriterioRubrica {
-
+public class NivelCriterio {
     @Id
     private int id;
 
     private String descripcion;
-    private String estado;
-    private int rubricaid;
+    private int nivel;
+    private double puntaje;
+    private int criterioid;
 
     public int getId() {
         return id;
@@ -31,16 +31,22 @@ public class CriterioRubrica {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public String getEstado() {
-        return estado;
+    public int getNivel() {
+        return nivel;
     }
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
     }
-    public int getRubricaid() {
-        return rubricaid;
+    public double getPuntaje() {
+        return puntaje;
     }
-    public void setRubricaid(int rubricaid) {
-        this.rubricaid = rubricaid;
+    public void setPuntaje(double puntaje) {
+        this.puntaje = puntaje;
+    }
+    public int getCriterioid() {
+        return criterioid;
+    }
+    public void setCriterioid(int criterioid) {
+        this.criterioid = criterioid;
     }
 }

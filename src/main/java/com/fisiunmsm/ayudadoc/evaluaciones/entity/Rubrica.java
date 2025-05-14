@@ -18,19 +18,12 @@ public class Rubrica {
     private String descripcion;
     private String estado;
     private String nombre;
-    private int cursocomponenteid;
 
     public int getId() {
         return id;
     }
     public void setId(int id) {
         this.id = id;
-    }
-    public int getCursocomponenteid() {
-        return cursocomponenteid;
-    }
-    public void setCursocomponenteid(int cursocomponenteid) {
-        this.cursocomponenteid = cursocomponenteid;
     }
     public String getDescripcion() {
         return descripcion;

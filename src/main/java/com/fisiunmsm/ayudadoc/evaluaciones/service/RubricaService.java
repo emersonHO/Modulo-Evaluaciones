@@ -29,8 +29,7 @@ public class RubricaService {
                 id,
                 rubrica.getNombre(),
                 rubrica.getDescripcion(),
-                rubrica.getEstado(),
-                rubrica.getCursocomponenteid()
+                rubrica.getEstado()
         ));
     }
 

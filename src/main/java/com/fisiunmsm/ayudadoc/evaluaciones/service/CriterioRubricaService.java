@@ -17,19 +17,18 @@ public class CriterioRubricaService {
     }
 
     public Flux<CriterioRubrica> getByRubricaId(int rubricaid) {
-        return criterioRubricaRepository.findByRubricaid(rubricaid);
+        return criterioRubricaRepository.findByRubricaId(rubricaid);
     }
 
-    public Mono<CriterioRubrica> save(CriterioRubrica criterioRubrica) {
-        return criterioRubricaRepository.save(criterioRubrica);
+    public Mono<CriterioRubrica> save(CriterioRubrica criterio) {
+        return criterioRubricaRepository.save(criterio);
     }
 
-    public Mono<CriterioRubrica> update(int id, CriterioRubrica criterioRubrica) {
+    public Mono<CriterioRubrica> update(int id, CriterioRubrica criterio) {
         return criterioRubricaRepository.save(new CriterioRubrica(
-                id, criterioRubrica.getDescripcion(),
-                criterioRubrica.getEstado(), criterioRubrica.getNivel(),
-                criterioRubrica.getPuntaje(),
-                criterioRubrica.getRubricaid()));
+                id, criterio.getEstado(), criterio.getDescripcion(),
+                criterio.getRubricaid()
+        ));
     }
 
     public Mono<Void> delete(int id) {
