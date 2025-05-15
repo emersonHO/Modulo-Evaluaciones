@@ -6,14 +6,14 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import com.fisiunmsm.ayudadoc.evaluaciones.handler.FormulaHandler;
+import com.fisiunmsm.ayudadoc.evaluaciones.handler.FuncionHandler;
 
 @Configuration
-public class FormulaRouter {
-    private static final String PATH= "/api/formula";
+public class FuncionRouter {
+    private static final String PATH= "/api/funcion";
 
     @Bean
-    RouterFunction<ServerResponse> formulasRouter(FormulaHandler handler){
+    RouterFunction<ServerResponse> funcionesRouter(FuncionHandler handler){
         return RouterFunctions.route()
                 .GET(PATH, handler::getAll)
                 .GET(PATH+"/{id}", handler::getById)
