@@ -1,9 +1,8 @@
 package com.fisiunmsm.ayudadoc.evaluaciones.handler;
 
 import com.fisiunmsm.ayudadoc.evaluaciones.entity.ComponenteCompetencia;
+import com.fisiunmsm.ayudadoc.evaluaciones.entity.ComponenteSimple;
 import com.fisiunmsm.ayudadoc.evaluaciones.service.ComponenteCompetenciaService;
-import com.fisiunmsm.ayudadoc.evaluaciones.dto.ComponenteCompetenciaDetalleDTO;
-import com.fisiunmsm.ayudadoc.evaluaciones.dto.ComponenteConCompetenciasDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -11,7 +10,6 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 import java.util.Map;
-import java.util.List;
 
 @Component
 public class ComponenteCompetenciaHandler {
@@ -127,33 +125,21 @@ public class ComponenteCompetenciaHandler {
                                 .then(ServerResponse.noContent().build());
         }
 
-        /*
-         * public Mono<ServerResponse> findByCursocompetenciaid(ServerRequest request) {
-         * Integer cursocompetenciaid =
-         * Integer.valueOf(request.pathVariable("cursocompetenciaid"));
-         * return ServerResponse.ok()
-         * .contentType(MediaType.APPLICATION_JSON)
-         * .body(service.findByCursocompetenciaid(cursocompetenciaid),
-         * ComponenteCompetencia.class);
-         * }
-         */
-
         public Mono<ServerResponse> findAllDetalles(ServerRequest request) {
                 return ServerResponse.ok()
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .body(service.findAllDetalles(), ComponenteCompetenciaDetalleDTO.class);
+                                .body(service.findAllDetalles(), ComponenteCompetencia.class);
         }
 
         public Mono<ServerResponse> findAllComponentesConCompetencias(ServerRequest request) {
                 return ServerResponse.ok()
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .body(service.findComponentesConCompetencias(), ComponenteConCompetenciasDTO.class);
+                                .body(service.findComponentesConCompetencias(), ComponenteCompetencia.class);
         }
 
         public Mono<ServerResponse> findAllComponentesConPeso(ServerRequest request) {
                 return ServerResponse.ok()
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .body(service.findAllComponentesConPeso(),
-                                                com.fisiunmsm.ayudadoc.evaluaciones.dto.ComponenteSimpleDTO.class);
+                                .body(service.findAllComponentesConPeso(), ComponenteSimple.class);
         }
 }

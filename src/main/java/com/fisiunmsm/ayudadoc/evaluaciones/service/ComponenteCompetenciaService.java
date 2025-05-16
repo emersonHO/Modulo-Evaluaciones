@@ -1,10 +1,8 @@
 package com.fisiunmsm.ayudadoc.evaluaciones.service;
 
 import com.fisiunmsm.ayudadoc.evaluaciones.entity.ComponenteCompetencia;
+import com.fisiunmsm.ayudadoc.evaluaciones.entity.ComponenteSimple;
 import com.fisiunmsm.ayudadoc.evaluaciones.repository.ComponenteCompetenciaRepository;
-import com.fisiunmsm.ayudadoc.evaluaciones.dto.ComponenteCompetenciaDetalleDTO;
-import com.fisiunmsm.ayudadoc.evaluaciones.dto.ComponenteConCompetenciasDTO;
-import com.fisiunmsm.ayudadoc.evaluaciones.dto.ComponenteSimpleDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -13,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.List;
 import java.util.AbstractMap;
 import java.util.Objects;
+import java.util.Map;
 
 @Service
 public class ComponenteCompetenciaService {
@@ -20,12 +19,7 @@ public class ComponenteCompetenciaService {
     private ComponenteCompetenciaRepository repository;
 
     public Flux<ComponenteCompetencia> findAll() {
-        return repository.findAll()
-                .flatMap(componente -> {
-                    // Aquí podrías agregar la lógica para obtener las competencias asociadas
-                    // Por ahora, solo retornamos el componente con su información básica
-                    return Mono.just(componente);
-                });
+        return repository.findAll();
     }
 
     public Mono<ComponenteCompetencia> findById(Integer id) {
@@ -33,7 +27,6 @@ public class ComponenteCompetenciaService {
     }
 
     public Mono<ComponenteCompetencia> save(ComponenteCompetencia componente) {
-        // Validar que los datos necesarios estén presentes
         if (componente.getCursocomponenteid() == null) {
             return Mono.error(new IllegalArgumentException("El ID del componente no puede estar vacío"));
         }
@@ -42,7 +35,6 @@ public class ComponenteCompetenciaService {
             return Mono.error(new IllegalArgumentException("El ID de la competencia no puede estar vacío"));
         }
 
-        // Asegurar que el peso sea un valor válido
         if (componente.getPeso() == null) {
             componente.setPeso(0.0);
         }
@@ -80,35 +72,30 @@ public class ComponenteCompetenciaService {
                 .switchIfEmpty(Mono.error(new IllegalArgumentException("No se encontró el componente con ID: " + id)));
     }
 
-    public Flux<ComponenteCompetenciaDetalleDTO> findAllDetalles() {
+    public Flux<ComponenteCompetencia> findAllDetalles() {
         return repository.findAllDetalles();
     }
 
-    public Flux<ComponenteConCompetenciasDTO> findComponentesConCompetencias() {
+    public Flux<ComponenteCompetencia> findComponentesConCompetencias() {
         return repository.findAllDetalles()
                 .collectList()
                 .flatMapMany(detalles -> {
                     try {
-                        // Agrupar por idComponente y descripcionComponente
                         var agrupado = detalles.stream()
                                 .collect(Collectors.groupingBy(
                                         d -> new AbstractMap.SimpleEntry<>(
                                                 d.getId(),
-                                                d.getDescripcionComponente())));
+                                                d.getCursocomponenteid())));
 
-                        List<ComponenteConCompetenciasDTO> resultado = agrupado.entrySet().stream()
+                        List<ComponenteCompetencia> resultado = agrupado.entrySet().stream()
                                 .map(entry -> {
                                     var key = entry.getKey();
                                     var lista = entry.getValue();
-                                    ComponenteConCompetenciasDTO dto = new ComponenteConCompetenciasDTO();
-                                    dto.setIdComponente(key.getKey());
-                                    dto.setDescripcionComponente(key.getValue());
-                                    dto.setCompetencias(
-                                            lista.stream()
-                                                    .map(x -> x.getDescripcionCompetencia())
-                                                    .filter(Objects::nonNull)
-                                                    .collect(Collectors.toList()));
-                                    return dto;
+                                    ComponenteCompetencia componente = new ComponenteCompetencia();
+                                    componente.setId(key.getKey());
+                                    componente.setCursocomponenteid(key.getValue());
+                                    componente.setPeso(lista.get(0).getPeso());
+                                    return componente;
                                 })
                                 .collect(Collectors.toList());
 
@@ -120,7 +107,7 @@ public class ComponenteCompetenciaService {
                 });
     }
 
-    public Flux<ComponenteSimpleDTO> findAllComponentesConPeso() {
+    public Flux<ComponenteSimple> findAllComponentesConPeso() {
         return repository.findAllComponentesConPeso();
     }
 
