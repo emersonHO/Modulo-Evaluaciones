@@ -32,7 +32,7 @@ public class Formula {
     private int copiamenor;
     private int copiamayor;
     private int redondeo;
-    private int institutoid;
+
 
     public int getId() {
         return id;
@@ -170,11 +170,5 @@ public class Formula {
         this.redondeo = redondeo;
     }
 
-    public int getInstitutoId() {
-        return institutoid;
-    }
 
-    public void setInstitutoId(int institutoid) {
-        this.institutoid = institutoid;
-    }
 }
