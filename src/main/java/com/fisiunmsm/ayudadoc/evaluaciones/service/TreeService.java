@@ -26,4 +26,8 @@ public class TreeService {
     public Mono<Competencia> getCompetenciaById(int id) {
         return competenciaRepository.findById(id);
     }
+
+    public Object getCompetenciasComponentesFormulas() {
+        return null;
+    }
 }
