@@ -15,33 +15,36 @@ import reactor.core.publisher.Mono;
 @Component
 @RequiredArgsConstructor
 public class FormulaHandler {
-    
+
     private final FormulaService formulaService;
 
-    public Mono<ServerResponse> getAll(ServerRequest request){
-        Flux<Formula> formulas= formulaService.getAll();
+    public Mono<ServerResponse> getAll(ServerRequest request) {
+        Flux<Formula> formulas = formulaService.getAll();
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(formulas, Formula.class);
     }
 
-    public Mono<ServerResponse> getById(ServerRequest request){
-        int id= Integer.valueOf(request.pathVariable("id"));
-        Mono<Formula> formula= formulaService.getById(id);
+    public Mono<ServerResponse> getById(ServerRequest request) {
+        int id = Integer.valueOf(request.pathVariable("id"));
+        Mono<Formula> formula = formulaService.getById(id);
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(formula, Formula.class);
     }
 
-    public Mono<ServerResponse> save(ServerRequest request){
-        Mono<Formula> formula= request.bodyToMono(Formula.class);
-        return formula.flatMap(f -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(formulaService.save(f), Formula.class));
+    public Mono<ServerResponse> save(ServerRequest request) {
+        Mono<Formula> formula = request.bodyToMono(Formula.class);
+        return formula.flatMap(f -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                .body(formulaService.save(f), Formula.class));
     }
 
-    public Mono<ServerResponse> update(ServerRequest request){
-        int id= Integer.valueOf(request.pathVariable("id"));
-        Mono<Formula> formula= request.bodyToMono(Formula.class);
-        return formula.flatMap(f -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(formulaService.update(id, f), Formula.class));
+    public Mono<ServerResponse> update(ServerRequest request) {
+        int id = Integer.valueOf(request.pathVariable("id"));
+        Mono<Formula> formula = request.bodyToMono(Formula.class);
+        return formula.flatMap(f -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                .body(formulaService.update(id, f), Formula.class));
     }
 
-    public Mono<ServerResponse> delete(ServerRequest request){
-        int id= Integer.valueOf(request.pathVariable("id"));
-        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(formulaService.delete(id), Formula.class);
+    public Mono<ServerResponse> delete(ServerRequest request) {
+        int id = Integer.valueOf(request.pathVariable("id"));
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(formulaService.delete(id),
+                Formula.class);
     }
 }
