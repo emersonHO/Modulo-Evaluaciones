@@ -1,24 +1,15 @@
-package com.fisiunmsm.ayudadoc.evaluaciones.dto;
+package com.fisiunmsm.ayudadoc.evaluaciones.entity;
 
-public class ComponenteSimpleDTO {
-    private Integer id;
+public class ComponenteSimple {
+    private Long id;
     private String descripcion;
     private Double peso;
 
-    public ComponenteSimpleDTO() {
-    }
-
-    public ComponenteSimpleDTO(Integer id, String descripcion, Double peso) {
-        this.id = id;
-        this.descripcion = descripcion;
-        this.peso = peso;
-    }
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
