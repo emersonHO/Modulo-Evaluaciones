@@ -10,8 +10,6 @@ import reactor.core.publisher.Mono;
 import java.util.stream.Collectors;
 import java.util.List;
 import java.util.AbstractMap;
-import java.util.Objects;
-import java.util.Map;
 
 @Service
 public class ComponenteCompetenciaService {
