@@ -5,6 +5,7 @@ import com.fisiunmsm.ayudadoc.evaluaciones.entity.ComponenteSimple;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
+
 import org.springframework.data.r2dbc.repository.Query;
 import reactor.core.publisher.Mono;
 
@@ -21,4 +22,7 @@ public interface ComponenteCompetenciaRepository extends ReactiveCrudRepository<
 
     @Query("DELETE FROM competencias_asociadas WHERE componente = :componente")
     Mono<Void> deleteByComponente(String componente);
+
+    @Query("SELECT * FROM componentecompetencia WHERE cursocompetenciaid = :cursocompetenciaid")
+    Flux<ComponenteCompetencia> findByCursocompetenciaid(Integer cursocompetenciaid);
 }

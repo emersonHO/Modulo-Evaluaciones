@@ -27,7 +27,7 @@ public class CriterioRubricaService {
     public Mono<CriterioRubrica> update(int id, CriterioRubrica criterio) {
         return criterioRubricaRepository.save(new CriterioRubrica(
                 id, criterio.getEstado(), criterio.getDescripcion(),
-                criterio.getRubricaid()
+                criterio.getRubricaid(), id, id
         ));
     }
 
