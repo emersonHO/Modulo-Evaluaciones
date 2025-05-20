@@ -10,24 +10,16 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 
 @Configuration
 public class CursoComponenteRouter {
-
+    private static final String PATH = "/api/componente";
     @Bean
     public RouterFunction<ServerResponse> cursoComponenteRoutes(CursoComponenteHandler handler) {
         return route()
-                // Obtener todos los componentes
-                .GET("/componentes", handler::findAll)
 
-                // Obtener componentes por ID de curso
-                .GET("/cursos/{cursoId}/componentes", handler::findByCursoId)
-
-                // Crear un nuevo componente
-                .POST("/componentes", handler::save)
-
-                // Actualizar un componente existente
-                .PUT("/componentes/{id}", handler::update)
-
-                // Eliminar un componente
-                .DELETE("/componentes/{id}", handler::delete)
+                .GET("/componente", handler::findAll)
+                .GET("/cursos/{cursoId}/componente", handler::findByCursoId)
+                .POST("/componente", handler::save)
+                .PUT("/componente/{id}", handler::update)
+                .DELETE("/componente/{id}", handler::delete)
 
                 .build();
     }
