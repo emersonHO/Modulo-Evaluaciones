@@ -10,16 +10,16 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 
 @Configuration
 public class CursoComponenteRouter {
-    private static final String PATH = "/api/componente";
+    private static final String PATH = "/api/componentes";
     @Bean
     public RouterFunction<ServerResponse> cursoComponenteRoutes(CursoComponenteHandler handler) {
         return route()
 
-                .GET("/componente", handler::findAll)
-                .GET("/cursos/{cursoId}/componente", handler::findByCursoId)
-                .POST("/componente", handler::save)
-                .PUT("/componente/{id}", handler::update)
-                .DELETE("/componente/{id}", handler::delete)
+                .GET("/componentes", handler::findAll)
+                .GET("/cursos/{cursoId}/componentes", handler::findByCursoId)
+                .POST("/componentes", handler::save)
+                .PUT("/componentes/{id}", handler::update)
+                .DELETE("/componentes/{id}", handler::delete)
 
                 .build();
     }
