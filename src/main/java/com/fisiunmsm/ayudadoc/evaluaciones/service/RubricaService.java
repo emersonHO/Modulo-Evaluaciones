@@ -12,15 +12,15 @@ import reactor.core.publisher.Mono;
 public class RubricaService {
     private final RubricaRepository rubricaRepository;
 
-    public Flux<Rubrica> getAll() {
+    public Flux<Rubrica> getAll(){
         return rubricaRepository.findAll();
     }
 
-    public Mono<Rubrica> getById(int id) {
+    public Mono<Rubrica> getById(int id){
         return rubricaRepository.findById(id);
     }
 
-    public Mono<Rubrica> save(Rubrica rubrica) {
+    public Mono<Rubrica> save(Rubrica rubrica){
         return rubricaRepository.save(rubrica);
     }
 
@@ -29,8 +29,8 @@ public class RubricaService {
                 id,
                 rubrica.getNombre(),
                 rubrica.getDescripcion(),
-                rubrica.getEstado(),
-                rubrica.getCursocomponenteid()));
+                rubrica.getEstado()
+        ));
     }
 
     public Mono<Void> delete(int id) {
