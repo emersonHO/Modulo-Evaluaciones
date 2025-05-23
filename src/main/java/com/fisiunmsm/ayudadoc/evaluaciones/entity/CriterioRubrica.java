@@ -13,7 +13,6 @@ import org.springframework.data.relational.core.mapping.Table;
 public class CriterioRubrica {
     @Id
     private int id;
-
     private String descripcion;
     private String estado;
     private int rubricaid;
