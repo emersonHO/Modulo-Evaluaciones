@@ -32,7 +32,7 @@ public class FormulaService {
                 formula.getDepartamentoId(), formula.getUsaPesos(), formula.getRestaMenor(),
                 formula.getNumMenor(), formula.getRestaMayor(), formula.getNumMayor(),
                 formula.getCopiaPrimero(), formula.getCopiaMenor(), formula.getCopiaMayor(),
-                formula.getRedondeo(), formula.getInstitutoId()));
+                formula.getRedondeo(), formula.getInstitutoid()));
     }
 
     public Mono<Void> delete(int id) {
