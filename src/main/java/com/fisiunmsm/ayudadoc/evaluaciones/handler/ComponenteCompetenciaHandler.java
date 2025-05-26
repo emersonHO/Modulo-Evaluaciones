@@ -142,4 +142,10 @@ public class ComponenteCompetenciaHandler {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .body(service.findAllComponentesConPeso(), ComponenteSimple.class);
         }
+
+        public Mono<ServerResponse> findComponentesNoAsociados(ServerRequest request) {
+                return ServerResponse.ok()
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .body(service.findComponentesNoAsociados(), ComponenteSimple.class);
+        }
 }

@@ -16,9 +16,12 @@ public interface ComponenteCompetenciaRepository extends ReactiveCrudRepository<
             "JOIN competencia comp ON cco.competenciaid = comp.id")
     Flux<ComponenteCompetencia> findAllDetalles();
 
-    @Query("SELECT c.id as id, c.descripcion as descripcion, c.peso as peso FROM cursocomponente c WHERE c.peso IS NOT NULL")
+    @Query("SELECT c.id as id, c.descripcion as descripcion, c.peso as peso FROM cursocomponente c LEFT JOIN componentecompetencia cc ON c.id = cc.cursocomponenteid GROUP BY c.id, c.descripcion, c.nivel, c.padreid, c.peso")
     Flux<ComponenteSimple> findAllComponentesConPeso();
 
     @Query("DELETE FROM competencias_asociadas WHERE componente = :componente")
     Mono<Void> deleteByComponente(String componente);
+
+    @Query("SELECT c.id as id, c.descripcion as descripcion, c.peso as peso FROM cursocomponente c LEFT JOIN componentecompetencia cc ON c.id = cc.cursocomponenteid WHERE cc.cursocomponenteid IS NULL GROUP BY c.id, c.descripcion, c.nivel, c.padreid, c.peso")
+    Flux<ComponenteSimple> findComponentesNoAsociados();
 }

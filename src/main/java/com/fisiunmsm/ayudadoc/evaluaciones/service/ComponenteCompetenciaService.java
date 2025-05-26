@@ -112,4 +112,8 @@ public class ComponenteCompetenciaService {
     public Mono<Void> deleteByComponente(String componente) {
         return repository.deleteByComponente(componente);
     }
+
+    public Flux<ComponenteSimple> findComponentesNoAsociados() {
+        return repository.findComponentesNoAsociados();
+    }
 }
