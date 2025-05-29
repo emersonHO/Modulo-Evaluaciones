@@ -28,6 +28,7 @@ public class ComponenteCompetenciaRouter {
                                 .andRoute(GET("/api/componentes-con-peso"), handler::findAllComponentesConPeso)
                                 .andRoute(GET("/api/competencias"), competenciaHandler::findAll)
                                 .andRoute(DELETE("/api/componente-competencia/by-componente/{componente}"),
-                                                handler::deleteByComponente);
+                                                handler::deleteByComponente)
+                                .andRoute(GET("/api/componentes-no-asociados"), handler::findComponentesNoAsociados);
         }
 }
