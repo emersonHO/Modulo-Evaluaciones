@@ -20,6 +20,7 @@ public interface ComponenteCompetenciaRepository extends ReactiveCrudRepository<
     Flux<ComponenteSimple> findAllComponentesConPeso();
 
     //Quitar o modificar este código
+    // "DELETE FROM componentecompetencia WHERE componenteid = :componenteid
     @Query("DELETE FROM competencias_asociadas WHERE componente = :componente")
     Mono<Void> deleteByComponente(String componente);
 
