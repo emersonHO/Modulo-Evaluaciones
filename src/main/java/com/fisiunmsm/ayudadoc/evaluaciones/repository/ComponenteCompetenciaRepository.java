@@ -19,6 +19,7 @@ public interface ComponenteCompetenciaRepository extends ReactiveCrudRepository<
     @Query("SELECT c.id as id, c.descripcion as descripcion, c.peso as peso FROM cursocomponente c LEFT JOIN componentecompetencia cc ON c.id = cc.cursocomponenteid GROUP BY c.id, c.descripcion, c.nivel, c.padreid, c.peso")
     Flux<ComponenteSimple> findAllComponentesConPeso();
 
+    //Quitar o modificar este código
     @Query("DELETE FROM competencias_asociadas WHERE componente = :componente")
     Mono<Void> deleteByComponente(String componente);
 
