@@ -119,6 +119,7 @@ public class ComponenteCompetenciaHandler {
                                 .then(ServerResponse.noContent().build());
         }
 
+        //quitar este codigo 
         public Mono<ServerResponse> deleteByComponente(ServerRequest request) {
                 String componente = request.pathVariable("componente");
                 return service.deleteByComponente(componente)
