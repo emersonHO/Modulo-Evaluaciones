@@ -2,6 +2,7 @@ package com.fisiunmsm.ayudadoc.evaluaciones.service;
 
 import com.fisiunmsm.ayudadoc.evaluaciones.entity.ComponenteCompetencia;
 import com.fisiunmsm.ayudadoc.evaluaciones.entity.ComponenteSimple;
+import com.fisiunmsm.ayudadoc.evaluaciones.entity.Competencia;
 import com.fisiunmsm.ayudadoc.evaluaciones.repository.ComponenteCompetenciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -109,11 +110,32 @@ public class ComponenteCompetenciaService {
         return repository.findAllComponentesConPeso();
     }
 
-    public Mono<Void> deleteByComponente(String componente) {
-        return repository.deleteByComponente(componente);
-    }
-
     public Flux<ComponenteSimple> findComponentesNoAsociados() {
         return repository.findComponentesNoAsociados();
+    }
+
+    public Mono<Void> deleteByCursocomponenteid(Long componenteId) {
+        return repository.deleteByCursocomponenteid(componenteId);
+    }
+
+    public Flux<Competencia> findCompetenciasByComponente(Long componenteId) {
+        return repository.findCompetenciasByComponenteId(componenteId)
+                .map(detalle -> {
+                    try {
+                        Competencia competencia = new Competencia();
+                        competencia.setId(detalle.getCursocompetenciaid());
+                        competencia.setNombre(detalle.getNombreCompetencia());
+                        competencia.setDescripcion(detalle.getDescripcionCompetencia());
+                        return competencia;
+                    } catch (Exception e) {
+                        System.err.println("Error al mapear competencia: " + e.getMessage());
+                        e.printStackTrace();
+                        throw e;
+                    }
+                })
+                .doOnError(error -> {
+                    System.err.println("Error en findCompetenciasByComponente: " + error.getMessage());
+                    error.printStackTrace();
+                });
     }
 }
