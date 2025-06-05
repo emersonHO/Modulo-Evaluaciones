@@ -34,10 +34,6 @@ public class ComponenteCompetenciaService {
             return Mono.error(new IllegalArgumentException("El ID de la competencia no puede estar vacío"));
         }
 
-        if (componente.getPeso() == null) {
-            componente.setPeso(0.0);
-        }
-
         return repository.save(componente)
                 .doOnSuccess(saved -> {
                     System.out.println("Componente-Competencia guardado exitosamente: " + saved);

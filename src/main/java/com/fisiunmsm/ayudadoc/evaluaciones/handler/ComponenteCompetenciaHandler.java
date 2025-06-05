@@ -59,7 +59,7 @@ public class ComponenteCompetenciaHandler {
                                         } else if (pesoObj instanceof String) {
                                                 comp.setPeso(Double.parseDouble((String) pesoObj));
                                         } else {
-                                                comp.setPeso(0.0);
+                                                comp.setPeso(null);
                                         }
 
                                         return service.save(comp);
