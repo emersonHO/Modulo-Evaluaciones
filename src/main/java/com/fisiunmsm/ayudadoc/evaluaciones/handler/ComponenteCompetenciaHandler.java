@@ -59,7 +59,7 @@ public class ComponenteCompetenciaHandler {
                                         } else if (pesoObj instanceof String) {
                                                 comp.setPeso(Double.parseDouble((String) pesoObj));
                                         } else {
-                                                comp.setPeso(0.0);
+                                                comp.setPeso(null);
                                         }
 
                                         return service.save(comp);
@@ -119,12 +119,6 @@ public class ComponenteCompetenciaHandler {
                                 .then(ServerResponse.noContent().build());
         }
 
-        public Mono<ServerResponse> deleteByComponente(ServerRequest request) {
-                String componente = request.pathVariable("componente");
-                return service.deleteByComponente(componente)
-                                .then(ServerResponse.noContent().build());
-        }
-
         public Mono<ServerResponse> findAllDetalles(ServerRequest request) {
                 return ServerResponse.ok()
                                 .contentType(MediaType.APPLICATION_JSON)
@@ -141,5 +135,50 @@ public class ComponenteCompetenciaHandler {
                 return ServerResponse.ok()
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .body(service.findAllComponentesConPeso(), ComponenteSimple.class);
+        }
+
+        public Mono<ServerResponse> findComponentesNoAsociados(ServerRequest request) {
+                return ServerResponse.ok()
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .body(service.findComponentesNoAsociados(), ComponenteSimple.class);
+        }
+
+        public Mono<ServerResponse> deleteByComponenteId(ServerRequest request) {
+                Long componenteId = Long.valueOf(request.pathVariable("componenteId"));
+                return service.deleteByCursocomponenteid(componenteId)
+                                .then(ServerResponse.noContent().build());
+        }
+
+        public Mono<ServerResponse> findCompetenciasByComponente(ServerRequest request) {
+                try {
+                        Long componenteId = Long.valueOf(request.pathVariable("componenteId"));
+                        return service.findCompetenciasByComponente(componenteId)
+                                        .collectList()
+                                        .flatMap(competencias -> ServerResponse.ok()
+                                                        .contentType(MediaType.APPLICATION_JSON)
+                                                        .bodyValue(competencias))
+                                        .switchIfEmpty(ServerResponse.notFound().build())
+                                        .onErrorResume(error -> {
+                                                System.err.println("Error en findCompetenciasByComponente handler: "
+                                                                + error.getMessage());
+                                                error.printStackTrace();
+                                                return ServerResponse.status(500)
+                                                                .contentType(MediaType.APPLICATION_JSON)
+                                                                .bodyValue(Map.of("error",
+                                                                                "Error al obtener competencias: "
+                                                                                                + error.getMessage()));
+                                        });
+                } catch (NumberFormatException e) {
+                        return ServerResponse.badRequest()
+                                        .contentType(MediaType.APPLICATION_JSON)
+                                        .bodyValue(Map.of("error", "ID de componente inválido"));
+                } catch (Exception e) {
+                        System.err.println(
+                                        "Error inesperado en findCompetenciasByComponente handler: " + e.getMessage());
+                        e.printStackTrace();
+                        return ServerResponse.status(500)
+                                        .contentType(MediaType.APPLICATION_JSON)
+                                        .bodyValue(Map.of("error", "Error interno del servidor: " + e.getMessage()));
+                }
         }
 }
