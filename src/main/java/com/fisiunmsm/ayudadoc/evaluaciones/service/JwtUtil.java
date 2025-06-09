@@ -13,7 +13,7 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class JwtUtil {
 
-    @Value("${jwt_secret}")
+    @Value("${jwt.secret}")
     private String secret;
 
     private final long EXPIRATION_MS = 3600000; // 1h
