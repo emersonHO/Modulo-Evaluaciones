@@ -25,10 +25,12 @@ public class ComponenteCompetenciaRouter {
                                 .andRoute(GET("/api/componente-competencia-detalle"), handler::findAllDetalles)
                                 .andRoute(GET("/api/componente-competencia-con-competencias"),
                                                 handler::findAllComponentesConCompetencias)
+                                .andRoute(GET("/api/componente-competencia-con-competencias/{componenteId}"),
+                                                handler::findCompetenciasByComponente)
                                 .andRoute(GET("/api/componentes-con-peso"), handler::findAllComponentesConPeso)
                                 .andRoute(GET("/api/competencias"), competenciaHandler::findAll)
-                                .andRoute(DELETE("/api/componente-competencia/by-componente/{componente}"),
-                                                handler::deleteByComponente)
-                                .andRoute(GET("/api/componentes-no-asociados"), handler::findComponentesNoAsociados);
+                                .andRoute(GET("/api/componentes-no-asociados"), handler::findComponentesNoAsociados)
+                                .andRoute(DELETE(PATH + "/by-componente/{componenteId}"),
+                                                handler::deleteByComponenteId);
         }
 }
