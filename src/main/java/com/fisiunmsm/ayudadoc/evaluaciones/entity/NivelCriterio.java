@@ -15,7 +15,7 @@ public class NivelCriterio {
     private int id;
 
     private String descripcion;
-    private int nivel;
-    private double puntaje;
+    private int puntajemax;
     private int criterioid;
+    private String titulo;
 }

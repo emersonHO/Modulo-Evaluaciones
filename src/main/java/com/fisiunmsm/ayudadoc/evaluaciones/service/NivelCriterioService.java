@@ -24,14 +24,7 @@ public class NivelCriterioService {
         return nivelCriterioRepository.save(nivel);
     }
 
-    public Mono<NivelCriterio> update(int id, NivelCriterio nivel) {
-        return nivelCriterioRepository.save(
-                new NivelCriterio(
-                        id, nivel.getDescripcion(), nivel.getNivel(),
-                        nivel.getPuntaje(), nivel.getCriterioid()
-                )
-        );
-    }
+    //TODO: Un nuevo update para nivel criterio
 
     public Mono<Void> delete(int id){
         return nivelCriterioRepository.deleteById(id);

@@ -30,12 +30,7 @@ public class NivelCriterioHandler {
                 .flatMap(nc -> ok().bodyValue(nc));
     }
 
-    public Mono<ServerResponse> update(ServerRequest request) {
-        int id = Integer.parseInt(request.pathVariable("id"));
-        return request.bodyToMono(NivelCriterio.class)
-                .flatMap(nc -> service.update(id, nc))
-                .flatMap(updated -> ok().bodyValue(updated));
-    }
+    //TODO: Un nuevo update para nivel criterio
 
     public Mono<ServerResponse> delete(ServerRequest request) {
         int id = Integer.parseInt(request.pathVariable("id"));

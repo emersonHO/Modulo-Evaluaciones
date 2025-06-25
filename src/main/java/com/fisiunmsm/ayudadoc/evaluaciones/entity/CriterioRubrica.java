@@ -7,19 +7,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table("competencia")
+@Table("criteriorubrica")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Competencia {
+public class CriterioRubrica {
     @Id
     private int id;
 
-    private String codigo;
-    private String nombre;
     private String descripcion;
-    private int planid;
-    private int institucionid;
-    private int departamentoid;
-    private String tipo;
+    private String estado;
+    private int rubricaid;
 }
