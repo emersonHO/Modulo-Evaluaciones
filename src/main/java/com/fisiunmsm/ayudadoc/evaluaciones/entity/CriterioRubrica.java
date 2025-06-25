@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class CriterioRubrica {
     @Id
-    private int id;
+    private Integer id;
 
     private String descripcion;
     private String estado;

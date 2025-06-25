@@ -12,7 +12,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Data
 public class NivelCriterio {
     @Id
-    private int id;
+    private Integer id;
 
     private String descripcion;
     private int puntajemax;
