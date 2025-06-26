@@ -5,12 +5,10 @@ import com.fisiunmsm.ayudadoc.evaluaciones.entity.Rubrica;
 import com.fisiunmsm.ayudadoc.evaluaciones.entity.ComponenteRubrica;
 import com.fisiunmsm.ayudadoc.evaluaciones.entity.CriterioRubrica;
 import com.fisiunmsm.ayudadoc.evaluaciones.entity.NivelCriterio;
-import com.fisiunmsm.ayudadoc.evaluaciones.repository.RubricaRepository;
-import com.fisiunmsm.ayudadoc.evaluaciones.repository.ComponenteRubricaRepository;
-import com.fisiunmsm.ayudadoc.evaluaciones.repository.CriterioRubricaRepository;
-import com.fisiunmsm.ayudadoc.evaluaciones.repository.NivelCriterioRepository;
+import com.fisiunmsm.ayudadoc.evaluaciones.repository.*;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -18,6 +16,7 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class RubricaService {
@@ -28,30 +27,37 @@ public class RubricaService {
     private final ComponenteRubricaRepository componenteRubricaRepository;
 
     public Mono<Rubrica> guardarRubricaCompleta(RubricaRequestDTO dto) {
-    Rubrica rubrica = new Rubrica(null, dto.getDescripcion(), dto.getEstado(), dto.getNombre());
+        log.info("Iniciando guardado de rubrica '{}'", dto.getNombre());
 
-    return rubricaRepository.save(rubrica)
-        .flatMap(savedRubrica -> {
-            // Guardar la relación con el componente
-            ComponenteRubrica cr = new ComponenteRubrica(null, savedRubrica.getId(), dto.getComponenteid());
-            Mono<ComponenteRubrica> guardarCR = componenteRubricaRepository.save(cr);
+        Rubrica rubrica = new Rubrica(null, dto.getDescripcion(), dto.getEstado(), dto.getNombre());
 
-            // Guardar criterios y niveles
-            Mono<Void> guardarCriteriosYNiveles = Flux.fromIterable(dto.getCriterios())
-                .flatMap(criterioDTO -> {
-                    CriterioRubrica criterio = new CriterioRubrica(null, criterioDTO.getDescripcion(), criterioDTO.getEstado(), savedRubrica.getId());
+        return rubricaRepository.save(rubrica)
+            .doOnSuccess(saved -> log.debug("Rubrica guardada con ID: {}", saved.getId()))
+            .flatMap(savedRubrica -> {
+                ComponenteRubrica cr = new ComponenteRubrica(null, savedRubrica.getId(), dto.getComponenteid());
+                Mono<ComponenteRubrica> guardarCR = componenteRubricaRepository.save(cr)
+                    .doOnSuccess(saved -> log.debug("Componente asociado guardado, ID: {}", saved.getId()));
 
-                    return criterioRepository.save(criterio)
+                Mono<Void> guardarCriteriosYNiveles = Flux.fromIterable(dto.getCriterios())
+                    .flatMap(criterioDTO -> {
+                        log.debug("Guardando criterio: {}", criterioDTO.getDescripcion());
+                        CriterioRubrica criterio = new CriterioRubrica(null, criterioDTO.getDescripcion(), criterioDTO.getEstado(), savedRubrica.getId());
+
+                        return criterioRepository.save(criterio)
+                            .doOnSuccess(saved -> log.debug("Criterio guardado con ID: {}", saved.getId()))
                             .flatMapMany(savedCriterio -> {
                                 List<NivelCriterio> niveles = criterioDTO.getNiveles().stream()
-                                        .map(n -> new NivelCriterio(null, n.getDescripcion(), n.getPuntajemax(), savedCriterio.getId(), n.getTitulo()))
-                                        .collect(Collectors.toList());
+                                    .map(n -> new NivelCriterio(null, n.getDescripcion(), n.getPuntajemax(), savedCriterio.getId(), n.getTitulo()))
+                                    .collect(Collectors.toList());
 
-                                return nivelRepository.saveAll(niveles);
+                                return nivelRepository.saveAll(niveles)
+                                    .doOnNext(nivel -> log.debug("Nivel guardado: {}", nivel.getDescripcion()));
                             });
-                }).then();
+                    }).then();
 
-            return guardarCR.then(guardarCriteriosYNiveles).thenReturn(savedRubrica);
-        });
+                return guardarCR.then(guardarCriteriosYNiveles).thenReturn(savedRubrica);
+            })
+            .doOnSuccess(r -> log.info("Rubrica '{}' guardada exitosamente con ID: {}", r.getNombre(), r.getId()))
+            .doOnError(e -> log.error("Error al guardar la rubrica: {}", e.getMessage(), e));
     }
 }

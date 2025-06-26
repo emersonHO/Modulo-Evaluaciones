@@ -20,7 +20,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestParam String username) {
-        // Simula autenticación
         String token = jwtUtil.generateToken(username);
         return ResponseEntity.ok(Map.of("token", token));
     }

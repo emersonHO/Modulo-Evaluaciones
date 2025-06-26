@@ -22,13 +22,10 @@ public class AuthHandler {
     }
 
     public Mono<ServerResponse> generateToken(ServerRequest request) {
-        // En un POST, esperamos el nombre de usuario en el cuerpo de la solicitud.
-        // Asumimos que el cuerpo es un JSON con la clave "username".
         return request.bodyToMono(Map.class)
                 .flatMap(body -> {
-                    String username = (String) body.get("test@correo.com");
+                    String username = (String) body.get("username");
                     if (username == null || username.trim().isEmpty()) {
-                        // Si el username no está presente o está vacío, devuelve un error 400 Bad Request.
                         return ServerResponse.badRequest()
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(Map.of("error", "Username is required"));
