@@ -11,7 +11,7 @@ public class AuthRouter {
     @Bean
     public RouterFunction<ServerResponse> authRoutes(AuthHandler handler) {
         return RouterFunctions.route()
-                .GET("/api/token", handler::generateToken)
+                .POST("/api/token", handler::generateToken)
                 .build();
     }
 }

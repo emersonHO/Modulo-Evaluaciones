@@ -13,6 +13,7 @@ public class RubricaRequestDTO {
     private String nombre;
     private String descripcion;
     private String estado;
+    private Long componenteid;
     private List<CriterioDTO> criterios;
 
     @NoArgsConstructor
