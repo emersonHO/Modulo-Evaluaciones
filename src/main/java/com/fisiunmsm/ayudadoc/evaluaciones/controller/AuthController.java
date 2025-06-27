@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fisiunmsm.ayudadoc.evaluaciones.service.JwtUtil;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/auth")
 public class AuthController {
 
     @Autowired
     private JwtUtil jwtUtil;
 
-    @PostMapping("/token")
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestParam String username) {
         String token = jwtUtil.generateToken(username);
         return ResponseEntity.ok(Map.of("token", token));
