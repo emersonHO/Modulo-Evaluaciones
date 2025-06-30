@@ -1,5 +1,7 @@
 package com.fisiunmsm.ayudadoc.evaluaciones.entity;
 
+import java.math.BigDecimal;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -7,19 +9,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table("competencia")
+@Table("alumnonotas")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Competencia {
+public class AlumnoNotas {
     @Id
     private int id;
-
-    private String codigo;
-    private String nombre;
-    private String descripcion;
-    private int planid;
-    private int institucionid;
-    private int departamentoid;
-    private String tipo;
+    private int alumnoid;
+    private int cursoid;
+    private int componentenotaid;
+    private BigDecimal nota;
 }

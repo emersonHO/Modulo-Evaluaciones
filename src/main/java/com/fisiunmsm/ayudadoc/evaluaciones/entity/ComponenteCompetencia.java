@@ -24,11 +24,9 @@ public class ComponenteCompetencia {
     @Column("descripcionCompetencia")
     private String descripcionCompetencia;
 
-    // Constructor vacío
     public ComponenteCompetencia() {
     }
 
-    // Constructor con todos los campos
     public ComponenteCompetencia(Integer cursocompetenciaid, Long cursocomponenteid, Double peso) {
         this.cursocompetenciaid = cursocompetenciaid;
         this.cursocomponenteid = cursocomponenteid;

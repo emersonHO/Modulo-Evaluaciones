@@ -1,18 +1,19 @@
 package com.fisiunmsm.ayudadoc.evaluaciones.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Table("criteriorubrica")
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class CriterioRubrica {
     @Id
-    private int id;
+    private Integer id;
 
     private String descripcion;
     private String estado;

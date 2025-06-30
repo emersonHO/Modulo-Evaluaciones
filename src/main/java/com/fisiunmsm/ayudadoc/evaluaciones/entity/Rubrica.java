@@ -7,14 +7,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table ("rubrica")
+@Table("rubrica")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class Rubrica {
     @Id
-    private int id;
-
+    private Integer id;
+    
     private String descripcion;
     private String estado;
     private String nombre;
