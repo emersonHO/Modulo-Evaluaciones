@@ -5,24 +5,31 @@ import com.fisiunmsm.ayudadoc.evaluaciones.entity.ComponenteSimple;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
-
 import org.springframework.data.r2dbc.repository.Query;
 import reactor.core.publisher.Mono;
 
 @Repository
 public interface ComponenteCompetenciaRepository extends ReactiveCrudRepository<ComponenteCompetencia, Integer> {
-    @Query("SELECT cc.* FROM componentecompetencia cc " +
+    @Query("SELECT cc.*, comp.nombre as nombreCompetencia, comp.descripcion as descripcionCompetencia " +
+            "FROM componentecompetencia cc " +
             "JOIN cursocomponente c ON cc.cursocomponenteid = c.id " +
             "JOIN cursocompetencia cco ON cc.cursocompetenciaid = cco.id " +
             "JOIN competencia comp ON cco.competenciaid = comp.id")
     Flux<ComponenteCompetencia> findAllDetalles();
 
-    @Query("SELECT c.id as id, c.descripcion as descripcion, c.peso as peso FROM cursocomponente c WHERE c.peso IS NOT NULL")
+    @Query("SELECT c.id as id, c.descripcion as descripcion, c.peso as peso FROM cursocomponente c LEFT JOIN componentecompetencia cc ON c.id = cc.cursocomponenteid GROUP BY c.id, c.descripcion, c.nivel, c.padreid, c.peso")
     Flux<ComponenteSimple> findAllComponentesConPeso();
 
-    @Query("DELETE FROM competencias_asociadas WHERE componente = :componente")
-    Mono<Void> deleteByComponente(String componente);
+    @Query("SELECT c.id as id, c.descripcion as descripcion, c.peso as peso FROM cursocomponente c LEFT JOIN componentecompetencia cc ON c.id = cc.cursocomponenteid WHERE cc.cursocomponenteid IS NULL GROUP BY c.id, c.descripcion, c.nivel, c.padreid, c.peso")
+    Flux<ComponenteSimple> findComponentesNoAsociados();
 
-    @Query("SELECT * FROM componentecompetencia WHERE cursocompetenciaid = :cursocompetenciaid")
-    Flux<ComponenteCompetencia> findByCursocompetenciaid(Integer cursocompetenciaid);
+    @Query("DELETE FROM componentecompetencia WHERE cursocomponenteid = :componenteId")
+    Mono<Void> deleteByCursocomponenteid(Long componenteId);
+
+    @Query("SELECT cc.*, comp.nombre as nombreCompetencia, comp.descripcion as descripcionCompetencia " +
+            "FROM componentecompetencia cc " +
+            "JOIN cursocompetencia cco ON cc.cursocompetenciaid = cco.id " +
+            "JOIN competencia comp ON cco.competenciaid = comp.id " +
+            "WHERE cc.cursocomponenteid = :componenteId")
+    Flux<ComponenteCompetencia> findCompetenciasByComponenteId(Long componenteId);
 }

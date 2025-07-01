@@ -29,6 +29,9 @@ public class CursoComponenteRouter {
                 // Eliminar un componente
                 .DELETE("/componentes/{id}", handler::delete)
 
+                // Obtener componentes únicos por id, descripcion y peso
+                .GET("/componentes-unicos", handler::findDistinctCodigoDescripcionPeso)
+
                 .build();
     }
 }

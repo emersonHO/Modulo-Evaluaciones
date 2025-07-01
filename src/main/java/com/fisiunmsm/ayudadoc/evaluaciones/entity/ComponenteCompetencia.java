@@ -18,11 +18,15 @@ public class ComponenteCompetencia {
     @Column("peso")
     private Double peso;
 
-    // Constructor vacío
+    @Column("nombreCompetencia")
+    private String nombreCompetencia;
+
+    @Column("descripcionCompetencia")
+    private String descripcionCompetencia;
+
     public ComponenteCompetencia() {
     }
 
-    // Constructor con todos los campos
     public ComponenteCompetencia(Integer cursocompetenciaid, Long cursocomponenteid, Double peso) {
         this.cursocompetenciaid = cursocompetenciaid;
         this.cursocomponenteid = cursocomponenteid;
@@ -62,6 +66,22 @@ public class ComponenteCompetencia {
         this.peso = peso;
     }
 
+    public String getNombreCompetencia() {
+        return nombreCompetencia;
+    }
+
+    public void setNombreCompetencia(String nombreCompetencia) {
+        this.nombreCompetencia = nombreCompetencia;
+    }
+
+    public String getDescripcionCompetencia() {
+        return descripcionCompetencia;
+    }
+
+    public void setDescripcionCompetencia(String descripcionCompetencia) {
+        this.descripcionCompetencia = descripcionCompetencia;
+    }
+
     @Override
     public String toString() {
         return "ComponenteCompetencia{" +
@@ -69,6 +89,8 @@ public class ComponenteCompetencia {
                 ", cursocompetenciaid=" + cursocompetenciaid +
                 ", cursocomponenteid=" + cursocomponenteid +
                 ", peso=" + peso +
+                ", nombreCompetencia=" + nombreCompetencia +
+                ", descripcionCompetencia=" + descripcionCompetencia +
                 '}';
     }
 }

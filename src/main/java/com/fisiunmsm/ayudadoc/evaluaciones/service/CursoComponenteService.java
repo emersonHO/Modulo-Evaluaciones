@@ -41,13 +41,14 @@ public class CursoComponenteService {
                 componente.getCalculado(),
                 componente.getDepartamentoid(),
                 componente.getFormulaid(),
-                componente.getCurso_id()
-        ));
+                componente.getCurso_id()));
     }
 
     public Mono<Void> delete(Long id) {
         return cursoComponenteRepository.deleteById(id);
     }
+
+    public Flux<CursoComponente> getDistinctCodigoDescripcionPeso() {
+        return cursoComponenteRepository.findDistinctCodigoDescripcionPeso();
+    }
 }
-
-

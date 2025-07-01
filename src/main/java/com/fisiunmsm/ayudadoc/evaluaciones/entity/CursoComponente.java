@@ -16,14 +16,14 @@ public class CursoComponente {
 
     private String codigo;
     private String descripcion;
-    private int evaluacionid;
-    private float peso;
+    private Integer evaluacionid;
+    private Float peso;
     private String estado;
-    private int cursoid;
-    private int orden;
+    private Integer cursoid;
+    private Integer orden;
     private Long padreid;
-    private int nivel;
-    private int institucionalid;
+    private Integer nivel;
+    private Integer institucionalid;
     private String calculado;
     private Long departamentoid;
     private Long formulaid;
