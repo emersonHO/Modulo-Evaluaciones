@@ -20,6 +20,10 @@ public class JwtWebFilter implements WebFilter {
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         String path = exchange.getRequest().getPath().toString();
 
+        if (exchange.getRequest().getMethod().name().equalsIgnoreCase("OPTIONS")) {
+            return chain.filter(exchange);
+        }
+
         /*URLS que se ignoran para las peticiones */
         if (path.startsWith("/api/token")) {
             return chain.filter(exchange);
