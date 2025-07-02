@@ -25,7 +25,7 @@ public class JwtWebFilter implements WebFilter {
         }
 
         /*URLS que se ignoran para las peticiones */
-        if (path.startsWith("/api/token") || path.startsWith("/auth/login")) {
+        if (path.startsWith("/api/token")) {
             return chain.filter(exchange);
         }
 
