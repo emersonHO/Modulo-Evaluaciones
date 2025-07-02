@@ -25,7 +25,7 @@ public class JwtWebFilter implements WebFilter {
         }
 
         /*URLS que se ignoran para las peticiones */
-        if (path.startsWith("/api/token") || path.startsWith("/auth/login")) {
+        if (path.startsWith("modeval-ejc7cfajc2hqgkfb.canadacentral-01.azurewebsites.net/api/token") || path.startsWith("modeval-ejc7cfajc2hqgkfb.canadacentral-01.azurewebsites.net/auth/login")) {
             return chain.filter(exchange);
         }
 
