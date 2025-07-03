@@ -8,8 +8,6 @@ public class ComponenteArbolDTO {
     private Double peso;
     private List<ComponenteArbolDTO> hijos;
 
-    public ComponenteArbolDTO() {}
-
     public ComponenteArbolDTO(Integer id, String descripcion, Double peso, List<ComponenteArbolDTO> hijos) {
         this.id = id;
         this.descripcion = descripcion;

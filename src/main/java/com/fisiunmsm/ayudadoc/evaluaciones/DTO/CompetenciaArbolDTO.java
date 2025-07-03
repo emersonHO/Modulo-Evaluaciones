@@ -7,8 +7,6 @@ public class CompetenciaArbolDTO {
     private String nombre;
     private List<ComponenteArbolDTO> componentes;
 
-    public CompetenciaArbolDTO() {}
-
     public CompetenciaArbolDTO(Integer competenciaId, String nombre, List<ComponenteArbolDTO> componentes) {
         this.competenciaId = competenciaId;
         this.nombre = nombre;

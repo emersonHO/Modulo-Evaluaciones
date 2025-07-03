@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import org.springframework.data.r2dbc.repository.Query;
 import reactor.core.publisher.Mono;
+import org.springframework.data.r2dbc.repository.Query;
+import reactor.core.publisher.Flux;
 
 @Repository
 public interface ComponenteCompetenciaRepository extends ReactiveCrudRepository<ComponenteCompetencia, Integer> {
@@ -32,4 +34,10 @@ public interface ComponenteCompetenciaRepository extends ReactiveCrudRepository<
             "JOIN competencia comp ON cco.competenciaid = comp.id " +
             "WHERE cc.cursocomponenteid = :componenteId")
     Flux<ComponenteCompetencia> findCompetenciasByComponenteId(Long componenteId);
+    
+    @Query("SELECT c.id FROM cursocomponente c " +
+            "JOIN componentecompetencia cc ON c.id = cc.cursocomponenteid " +
+            "JOIN cursocompetencia cco ON cc.cursocompetenciaid = cco.id " +
+            "WHERE cco.competenciaid = :competenciaId")
+    Flux<Long> findComponenteIdsByCompetenciaId(Integer competenciaId);
 }
