@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import org.springframework.data.r2dbc.repository.Query;
 import reactor.core.publisher.Mono;
-import org.springframework.data.r2dbc.repository.Query;
 import reactor.core.publisher.Flux;
 
 @Repository
