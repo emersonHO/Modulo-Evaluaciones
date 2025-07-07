@@ -46,7 +46,7 @@ public class FormulaService {
                 formula.getDepartamentoId(), formula.getUsaPesos(), formula.getRestaMenor(),
                 formula.getNumMenor(), formula.getRestaMayor(), formula.getNumMayor(),
                 formula.getCopiaPrimero(), formula.getCopiaMenor(), formula.getCopiaMayor(),
-                formula.getRedondeo(), formula.getInstitutoid()
+                formula.getRedondeo()
         )).doOnSuccess(updated -> log.debug("Formula actualizada: {}", updated.getCodigo()));
     }
 

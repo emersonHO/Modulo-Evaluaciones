@@ -1,6 +1,7 @@
 package com.fisiunmsm.ayudadoc.evaluaciones.repository;
 
 import com.fisiunmsm.ayudadoc.evaluaciones.DTO.PromedioCompetenciaDTO;
+import com.fisiunmsm.ayudadoc.evaluaciones.DTO.TopNotaDTO;
 import com.fisiunmsm.ayudadoc.evaluaciones.entity.AlumnoNotas;
 
 import org.springframework.data.r2dbc.repository.Query;
@@ -26,4 +27,19 @@ public interface NotasRepository extends ReactiveCrudRepository<AlumnoNotas, Lon
         GROUP BY an.alumnoid, c.id, comp.id, comp.nombre
     """)
     Flux<PromedioCompetenciaDTO> obtenerPromedioPorCompetencia(int alumnoId, int cursoId);
+
+    @Query("""
+        SELECT 
+          an.alumnoid AS alumno_id,
+          an.cursoid AS curso_id,
+          cuco.id AS componente_id,
+          cuco.descripcion AS nombre_componente,
+          an.nota AS nota
+        FROM alumnonotas an
+        JOIN cursocomponente cuco ON an.componentenotaid = cuco.id
+        WHERE an.cursoid = :cursoId AND an.componentenotaid = :componenteId
+        ORDER BY an.nota DESC
+        LIMIT 10
+    """)
+    Flux<TopNotaDTO> obtenerTopNotasPorCursoYComponente(int cursoId, int componenteId);
 }
