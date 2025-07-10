@@ -15,22 +15,22 @@ public class CursoComponenteRouter {
     public RouterFunction<ServerResponse> cursoComponenteRoutes(CursoComponenteHandler handler) {
         return route()
                 // Obtener todos los componentes
-                .GET("/componentes", handler::findAll)
+                .GET("/api/componentes", handler::findAll)
 
                 // Obtener componentes por ID de curso
-                .GET("/cursos/{cursoId}/componentes", handler::findByCursoId)
+                .GET("/api/cursos/{cursoId}/componentes", handler::findByCursoId)
 
                 // Crear un nuevo componente
-                .POST("/componentes", handler::save)
+                .POST("/api/componentes", handler::save)
 
                 // Actualizar un componente existente
-                .PUT("/componentes/{id}", handler::update)
+                .PUT("/api/componentes/{id}", handler::update)
 
                 // Eliminar un componente
-                .DELETE("/componentes/{id}", handler::delete)
+                .DELETE("/api/componentes/{id}", handler::delete)
 
                 // Obtener componentes únicos por id, descripcion y peso
-                .GET("/componentes-unicos", handler::findDistinctCodigoDescripcionPeso)
+                .GET("/api/componentes-unicos", handler::findDistinctCodigoDescripcionPeso)
 
                 .build();
     }
