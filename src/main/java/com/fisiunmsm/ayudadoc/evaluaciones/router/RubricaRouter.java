@@ -14,6 +14,8 @@ public class RubricaRouter {
     public RouterFunction<ServerResponse> rubricaRoutes(RubricaHandler handler) {
         return RouterFunctions.route()
                 .POST("/api/rubricas", handler::guardarRubrica)
+                .GET("/api/rubricas", handler::obtenerRubricas)
                 .build();
     }
+
 }

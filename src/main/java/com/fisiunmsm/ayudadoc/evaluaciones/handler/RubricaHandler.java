@@ -23,4 +23,9 @@ public class RubricaHandler {
                 .flatMap(rubricaService::guardarRubricaCompleta)
                 .flatMap(saved -> ServerResponse.ok().bodyValue(saved));
     }
+    public Mono<ServerResponse> obtenerRubricas(ServerRequest request) {
+        return rubricaService.obtenerRubricas()
+            .collectList()
+            .flatMap(rubricas -> ServerResponse.ok().bodyValue(rubricas));
+    }
 }
