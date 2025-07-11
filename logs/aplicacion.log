@@ -751,3 +751,14 @@ java.time.DateTimeException: Invalid ID for region-based ZoneId, invalid format:
 2025-07-10 23:11:17 [parallel-4] INFO  c.f.a.e.service.FormulaService - Obteniendo todas las fórmulas
 2025-07-10 23:11:17 [parallel-5] INFO  c.f.a.e.handler.FormulaHandler - Request GET /api/formula desde /[0:0:0:0:0:0:0:1]:63960 - Obteniendo todas las fórmulas
 2025-07-10 23:11:17 [parallel-5] INFO  c.f.a.e.service.FormulaService - Obteniendo todas las fórmulas
+2025-07-10 23:52:46 [main] INFO  c.f.a.e.EvaluacionesApplication - Starting EvaluacionesApplication using Java 21.0.7 with PID 7192 (C:\Users\proja\OneDrive\Documentos\Github\Modulo-Evaluaciones\target\classes started by proja in C:\Users\proja\OneDrive\Documentos\Github\Modulo-Evaluaciones)
+2025-07-10 23:52:46 [main] DEBUG c.f.a.e.EvaluacionesApplication - Running with Spring Boot v3.2.3, Spring v6.1.4
+2025-07-10 23:52:46 [main] INFO  c.f.a.e.EvaluacionesApplication - No active profile set, falling back to 1 default profile: "default"
+2025-07-10 23:52:47 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2025-07-10 23:52:47 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 114 ms. Found 12 R2DBC repository interfaces.
+2025-07-10 23:52:48 [main] INFO  o.s.b.a.s.r.ReactiveUserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 139fd758-d940-419e-95e0-0a3d841de195
+
+2025-07-10 23:52:48 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 8080
+2025-07-10 23:52:48 [main] INFO  c.f.a.e.EvaluacionesApplication - Started EvaluacionesApplication in 2.403 seconds (process running for 2.921)
